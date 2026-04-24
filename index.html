@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Japer Task Board</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f0f13;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 32px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #818cf8, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: #64748b;
+      margin-top: 6px;
+      font-size: 0.9rem;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .column {
+      background: #1a1a24;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid #2a2a38;
+    }
+
+    .column-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .column-header h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .badge {
+      background: #2a2a38;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 99px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .col-todo .dot    { background: #f59e0b; }
+    .col-todo h2      { color: #f59e0b; }
+    .col-progress .dot{ background: #38bdf8; }
+    .col-progress h2  { color: #38bdf8; }
+    .col-done .dot    { background: #34d399; }
+    .col-done h2      { color: #34d399; }
+
+    .card {
+      background: #12121a;
+      border: 1px solid #2a2a38;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .card:last-child { margin-bottom: 0; }
+
+    .card:hover {
+      border-color: #3f3f58;
+      transform: translateY(-1px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #e2e8f0;
+    }
+
+    .priority {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 99px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .priority-High   { background: #7f1d1d; color: #fca5a5; }
+    .priority-Medium { background: #78350f; color: #fcd34d; }
+    .priority-Low    { background: #14532d; color: #86efac; }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #475569;
+    }
+
+    .card-id {
+      font-family: monospace;
+      background: #1e1e2e;
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #818cf8;
+    }
+
+    .empty {
+      text-align: center;
+      color: #334155;
+      font-size: 0.85rem;
+      padding: 24px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Japer Task Board</h1>
+  <p>Last updated: 2026-04-24</p>
+</header>
+
+<div class="board">
+
+  <!-- TODO -->
+  <div class="column col-todo">
+    <div class="column-header">
+      <div class="dot"></div>
+      <h2>Todo</h2>
+      <span class="badge">3</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Set up Gmail API for email sending</span>
+        <span class="priority priority-High">High</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-id">T001</span>
+        <span>Sankeerth &middot; 2026-04-24</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Investigate Chrome Extension publishing plan</span>
+        <span class="priority priority-Medium">Medium</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-id">T002</span>
+        <span>Sankeerth &middot; 2026-04-24</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Review task board structure</span>
+        <span class="priority priority-Medium">Medium</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-id">T004</span>
+        <span>Sankeerth &middot; 2026-04-24</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- IN PROGRESS -->
+  <div class="column col-progress">
+    <div class="column-header">
+      <div class="dot"></div>
+      <h2>In Progress</h2>
+      <span class="badge">0</span>
+    </div>
+    <div class="empty">No tasks in progress</div>
+  </div>
+
+  <!-- DONE -->
+  <div class="column col-done">
+    <div class="column-header">
+      <div class="dot"></div>
+      <h2>Done</h2>
+      <span class="badge">2</span>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Initial bootstrap conversation</span>
+        <span class="priority priority-Medium">Medium</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-id">T005</span>
+        <span>Japer &middot; 2026-04-24</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Create task board</span>
+        <span class="priority priority-Medium">Medium</span>
+      </div>
+      <div class="card-meta">
+        <span class="card-id">T003</span>
+        <span>Japer &middot; 2026-04-24</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
